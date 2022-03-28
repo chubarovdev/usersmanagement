@@ -19,18 +19,17 @@ use \Illuminate\Support\Str;
 
 class UsersController extends Controller
 {
-    protected $request;
-
-    public function __construct(Request $request)
-    {
-        $this->request = $request;
-    }
-
+    /**
+     * Обображение главной страницы со всеми пользователями
+     */
     public function index()
     {
         $users = User::orderByDesc('id')->paginate(6);
 
         $users->withPath('/users');
+        foreach ($users as $user) {
+
+        }
 
         if( Auth::check() )
         {
@@ -45,9 +44,14 @@ class UsersController extends Controller
         return view('homepage', ['authUserId' => $authUserId, 'authUserRole' => $authUserRole, 'users' => $users]);
     }
 
+    /**
+     * Отображение профиля пользователя
+     * @param User $user
+     */
     public function profile(User $user)
     {
         $user->avatar = AvatarServise::show($user);
+
         return view('profile.profile', ['user' => $user]);
     }
 

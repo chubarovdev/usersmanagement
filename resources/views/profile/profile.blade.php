@@ -18,7 +18,7 @@
                         <div class="row no-gutters row-grid">
                             <div class="col-12">
                                 <div class="d-flex flex-column align-items-center justify-content-center p-4">
-                                    <img src="/{{$user->avatar}}" class="rounded-circle shadow-2 img-thumbnail" width="200px" alt="{{$user->name}}">
+                                    <img src="/{{$user->avatar}}" class="rounded-circle shadow-2 img-thumbnail" width="40%" alt="{{$user->name}}">
                                     <h5 class="mb-0 fw-700 text-center mt-3">
                                         {{$user->name}}
                                         <small class="text-muted mb-0"></small>
