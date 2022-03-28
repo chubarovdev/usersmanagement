@@ -13,11 +13,18 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminController extends Controller
 {
+    /**
+     * Отображение страницы создания нового пользователя
+     */
     public function newUser()
     {
         return view('admin.create');
     }
 
+    /**
+     * Создание нового пользователя
+     * @param NewUserRequest $request
+     */
     public function storeNewUser(NewUserRequest $request)
     {
        UserServise::create();

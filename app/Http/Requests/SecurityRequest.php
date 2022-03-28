@@ -24,7 +24,7 @@ class SecurityRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Правила валидации формы сохранения пароля и e-mail
      *
      * @return array
      */
@@ -49,7 +49,7 @@ class SecurityRequest extends FormRequest
     }
 
     /**
-     * Получить сообщения об ошибках для определенных правил валидации.
+     * Сообщения об ошибках для определенных правил валидации.
      *
      * @return array
      */

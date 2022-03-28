@@ -17,7 +17,7 @@ class EmptyInput implements Rule
     }
 
     /**
-     * Determine if the validation rule passes.
+     * Правило валидации при отправлении пустого поля (отправка пробела)
      *
      * @param  string  $attribute
      * @param  mixed  $value
@@ -35,6 +35,6 @@ class EmptyInput implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'Поле является пустым!';
     }
 }

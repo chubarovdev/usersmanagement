@@ -18,7 +18,7 @@ class NewUserRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Правила валидации создания нового пользователя (регистрация/из админки администратором)
      *
      * @return array
      */

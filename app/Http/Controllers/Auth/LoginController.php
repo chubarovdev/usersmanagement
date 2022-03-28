@@ -13,10 +13,17 @@ use Laracasts\Flash\FlashNotifier;
 
 class LoginController extends Controller
 {
+    /**
+     * Отображение страницы авторизации
+     */
     public function showLogin(){
         return view('auth.login');
     }
 
+    /**
+     * Авторизация пользователя
+     * @param LoginRequest $request
+     */
     public function makeLogin(LoginRequest $request)
     {
         if (Auth::attempt([

@@ -15,16 +15,16 @@ class Authenticate extends Middleware
             return redirect()->route('login');
         }
         $authUser = auth()->user();
-        // Auth
+        // Auth - если пользователь авторизирован
         if ($role == 'auth' && Auth::check() ) {
             return $next($request);
         }
 
-        // Owner
+        // Owner - доступ только к своему профилю
         if ($role == 'owner' && ($request->user == Auth::id() || $authUser->role == 'admin' )) {
             return $next($request);
         }
-        // Admin
+        // Admin - если администратор, доступ ко всему
         if ($role == 'admin' &&  $authUser->role == 'admin' ) {
             return $next($request);
         }

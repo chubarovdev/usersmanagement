@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 
 
-/**
- * Класс для работы с данными пользователя
- */
 class UserServise
 {
     /**

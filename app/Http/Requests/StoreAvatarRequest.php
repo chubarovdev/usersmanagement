@@ -19,7 +19,7 @@ class StoreAvatarRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Правила валидации для формы загрузки аватарки
      *
      * @return array
      */

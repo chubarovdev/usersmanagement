@@ -11,11 +11,18 @@ use Illuminate\Support\Facades\Redirect;
 
 class RegistrationController extends Controller
 {
+    /**
+     * Отображение страницы регистрации
+     */
     public function showRegistration()
     {
         return view('auth.registration');
     }
 
+    /**
+     * Регистрация нового пользователя
+     * @param NewUserRequest $request
+     */
     public function registrate(NewUserRequest $request)
     {
         UserServise::create();

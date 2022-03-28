@@ -55,12 +55,17 @@ class UsersController extends Controller
         return view('profile.profile', ['user' => $user]);
     }
 
+    /**
+     * Отображение страницы редактирования основной информации
+     */
     public function mainInfo(User $user)
     {
         return view('profile.edit', ['user' => $user]);
     }
 
-
+    /**
+     * Сохранение основной информации
+     */
     public function storeMainInfo(User $user, Request $request)
     {
         $user->name = $request->name;
@@ -73,11 +78,20 @@ class UsersController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Отображение страницы редактирования пароля и e-mail
+     * @param User $user
+     */
     public function security(User $user)
     {
         return view('profile.security', ['user' => $user]);
     }
 
+    /**
+     * Сохранение пароля и e-mail
+     * @param User $user
+     * @param SecurityRequest $request
+     */
     public function storeSecurity(User $user, SecurityRequest $request)
     {
         $isEmailChanged = UserServise::updateEmail($user, $request->email);
@@ -95,12 +109,21 @@ class UsersController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Отображение страницы редактирования аватара пользователя
+     * @param User $user
+     */
     public function avatar(User $user)
     {
         $user->avatar = AvatarServise::show($user);
         return view('profile.avatar', ['user' => $user]);
     }
 
+    /**
+     * Сохранение аватара пользователя
+     * @param User $user
+     * @param StoreAvatarRequest $request
+     */
     public function storeAvatar(User $user, StoreAvatarRequest $request)
     {
         AvatarServise::store($user, $request->avatar);
@@ -110,11 +133,20 @@ class UsersController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Отображение страницы редактирования статуса
+     * @param User $user
+     */
     public function status(User $user)
     {
         return view('profile.status', ['user' => $user]);
     }
 
+    /**
+     * Сохранение статуса пользователя
+     * @param User $user
+     * @param StatusRequest $request
+     */
     public function storeStatus(User $user, StatusRequest $request)
     {
         $user->status = $request->status;
@@ -125,6 +157,10 @@ class UsersController extends Controller
         return redirect()->back();
     }
 
+    /**
+     * Удаление пользователя вместе с аватаром
+     * @param User $user
+     */
     public function deleteProfile(User $user)
     {
         UserServise::delete($user);

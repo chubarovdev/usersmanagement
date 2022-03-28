@@ -17,7 +17,7 @@ class StatusRequest extends FormRequest
     }
 
     /**
-     * Get the validation rules that apply to the request.
+     * Правила валидации формы изменения статуса
      *
      * @return array
      */
