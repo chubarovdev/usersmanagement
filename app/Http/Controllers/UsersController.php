@@ -27,9 +27,6 @@ class UsersController extends Controller
         $users = User::orderByDesc('id')->paginate(6);
 
         $users->withPath('/users');
-        foreach ($users as $user) {
-
-        }
 
         if( Auth::check() )
         {
@@ -68,11 +65,7 @@ class UsersController extends Controller
      */
     public function storeMainInfo(User $user, Request $request)
     {
-        $user->name = $request->name;
-        $user->job = $request->job;
-        $user->phone = $request->phone;
-        $user->address = $request->address;
-        $user->save();
+        User::updateMainInfo($user, $request);
 
         flash('Данные успешно обновлены!')->success();
         return redirect()->back();
@@ -94,13 +87,13 @@ class UsersController extends Controller
      */
     public function storeSecurity(User $user, SecurityRequest $request)
     {
-        $isEmailChanged = UserServise::updateEmail($user, $request->email);
+        $isEmailChanged = User::updateEmail($user, $request->email);
 
         if($isEmailChanged) {
             flash('E-mail успешно обновлен!')->success();
         }
 
-        $isPasswordChanged = UserServise::updatePassword($user, $request->password);
+        $isPasswordChanged = User::updatePassword($user, $request->password);
 
         if($isPasswordChanged) {
             flash('Пароль успешно обновлен!')->success();
@@ -149,8 +142,7 @@ class UsersController extends Controller
      */
     public function storeStatus(User $user, StatusRequest $request)
     {
-        $user->status = $request->status;
-        $user->save();
+        User::updateStatus($user, $request->status);
 
         flash('Статус успешно обновлен!')->success();
 

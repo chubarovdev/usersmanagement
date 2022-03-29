@@ -38,32 +38,6 @@ class UserServise
     }
 
     /**
-     * Обновление e-mail пользователя
-     * @param User $user
-     * @param string $newEmail
-     * @return int|void
-     */
-    public static function updateEmail(User $user, string $newEmail)
-    {
-        if($newEmail != $user->email) { // Если пользователь вводит свой собственный e-mail
-            return DB::table('users')->where('id', $user->id)->update(['email' => $newEmail]);
-        }
-    }
-
-    /**
-     * Обновление пароля пользователя
-     * @param User $user
-     * @param $newPassword
-     * @return int|void
-     */
-    public static function updatePassword(User $user, $newPassword)
-    {
-        if(trim($newPassword) != null) { // Обрезаем, если вместо пароля переданы пробелы
-            return DB::table('users')->where('id', $user->id)->update(['password' => Hash::make($newPassword)]);
-        }
-    }
-
-    /**
      * Удаление пользователя вместе с загруженным аватаром
      * @param User $user
      * @return bool|null
