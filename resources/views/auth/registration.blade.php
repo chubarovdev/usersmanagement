@@ -73,7 +73,7 @@
                                         </div>
                                         <div class="form-group">
                                             <label class="form-label" for="userpassword">Пароль <br></label>
-                                            <input name="password" type="password" id="userpassword" class="form-control" placeholder="" required>
+                                            <input name="password" type="password" id="userpassword" class="form-control" placeholder="****" required>
                                             <div class="invalid-feedback">Заполните поле.</div>
                                         </div>
 

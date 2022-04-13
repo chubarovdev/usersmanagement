@@ -28,25 +28,25 @@
                                 <!-- username -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Имя</label>
-                                    <input name="name" type="text" id="simpleinput" class="form-control">
+                                    <input name="name" type="text" id="simpleinput" class="form-control" value="{{request()->old('name')}}">
                                 </div>
 
                                 <!-- title -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Место работы</label>
-                                    <input name="job" type="text" id="simpleinput" class="form-control">
+                                    <input name="job" type="text" id="simpleinput" class="form-control" value="{{request()->old('job')}}">
                                 </div>
 
                                 <!-- tel -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Номер телефона</label>
-                                    <input name="phone" type="text" id="simpleinput" class="form-control">
+                                    <input name="phone" type="text" id="simpleinput" class="form-control" value="{{request()->old('phone')}}">
                                 </div>
 
                                 <!-- address -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Адрес</label>
-                                    <input name="address" type="text" id="simpleinput" class="form-control">
+                                    <input name="address" type="text" id="simpleinput" class="form-control" value="{{request()->old('address')}}">
                                 </div>
                             </div>
                         </div>
@@ -63,13 +63,13 @@
                                 <!-- email -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Email</label>
-                                    <input name="email" type="text" id="simpleinput" class="form-control">
+                                    <input name="email" type="text" id="simpleinput" class="form-control" value="{{request()->old('email')}}">
                                 </div>
 
                                 <!-- password -->
                                 <div class="form-group">
                                     <label class="form-label" for="simpleinput">Пароль</label>
-                                    <input name="password" type="password" id="simpleinput" class="form-control">
+                                    <input name="password" type="password" id="simpleinput" class="form-control" placeholder="****">
                                 </div>
 
 

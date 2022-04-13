@@ -18,15 +18,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('test', function () {
-    $authUser = auth()->user();
-    $role = 'admin';
-    dd($role == 'admin' &&  $authUser->role == 'admin');
-});
 
 // Homepage
 Route::get('/', [UsersController::class, 'index'])->name('homepage');
-Route::get('/users', [UsersController::class, 'index'])->name('homepage');
+Route::get('/users', [UsersController::class, 'index'])->name('users');
 // Login & Registration
 Route::middleware('guest')->group(function() {
     // Registration
@@ -34,7 +29,7 @@ Route::middleware('guest')->group(function() {
     Route::post('/registration', [RegistrationController::class, 'registrate'])->name('registrate');
 
     // Auth
-    Route::get('/login', [LoginController::class, 'showLogin'])->name('login');
+    Route::get('/login', [LoginController::class, 'login'])->name('login');
     Route::post('/login', [LoginController::class, 'makeLogin'])->name('login');
 });
 
@@ -44,7 +39,7 @@ Route::get('/logout', [LogoutController::class, 'make'])->name('logout');
 // Users pages
 Route::prefix('user')->group(function () {
     // Profile
-    Route::get('{user}', [UsersController::class, 'profile'])->name('profile')->middleware('auth:auth');
+    Route::get('{user}', [UsersController::class, 'profile'])->name('profile');
     // EditMainInfo
     Route::get('{user}/edit', [UsersController::class, 'mainInfo'])->middleware('auth:owner')->name('editMainInfo');
     Route::post('{user}/edit', [UsersController::class, 'storeMainInfo'])->middleware('auth:owner')->name('storeMainInfo');

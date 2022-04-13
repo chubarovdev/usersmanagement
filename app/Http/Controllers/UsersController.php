@@ -6,21 +6,14 @@ use App\Http\Requests\SecurityRequest;
 use App\Http\Requests\StatusRequest;
 use App\Http\Requests\StoreAvatarRequest;
 use App\Models\User;
-use App\Rules\EmptyInput;
-use App\Rules\EmptyString;
 use App\Servises\AvatarServise;
-use App\Servises\UserServise;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
-use \Illuminate\Support\Str;
 
 class UsersController extends Controller
 {
     /**
-     * Обображение главной страницы со всеми пользователями
+     * Отображение главной страницы со всеми пользователями
      */
     public function index()
     {
@@ -43,7 +36,6 @@ class UsersController extends Controller
 
     /**
      * Отображение профиля пользователя
-     * @param User $user
      */
     public function profile(User $user)
     {
@@ -68,6 +60,7 @@ class UsersController extends Controller
         User::updateMainInfo($user, $request);
 
         flash('Данные успешно обновлены!')->success();
+
         return redirect()->back();
     }
 
@@ -109,6 +102,7 @@ class UsersController extends Controller
     public function avatar(User $user)
     {
         $user->avatar = AvatarServise::show($user);
+
         return view('profile.avatar', ['user' => $user]);
     }
 
@@ -155,14 +149,15 @@ class UsersController extends Controller
      */
     public function deleteProfile(User $user)
     {
-        UserServise::delete($user);
+        User::remove($user);
 
         if( Auth::id() == $user->id ) {
             return redirect()->route('logout');
         }
 
         flash("Пользователь $user->name удален!")->success();
-        return redirect()->back();
+
+        return redirect()->route('homepage');
     }
 }
 

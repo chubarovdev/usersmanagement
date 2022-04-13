@@ -22,7 +22,7 @@ class AvatarServise
 
         $newAvatarPath = $image->store('avatars', 'public');
 
-        if($oldAvatarPath != null) {
+        if($oldAvatarPath) {
             Storage::disk('public')->delete($oldAvatarPath);
         }
 

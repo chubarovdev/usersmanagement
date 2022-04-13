@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
-use http\Client\Request;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Helpers\Status;
+use App\Servises\AvatarServise;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Sanctum\HasApiTokens;
 use phpDocumentor\Reflection\Types\Integer;
 
@@ -54,6 +55,32 @@ class User extends Authenticatable
     ];
 
     /**
+     * Создание нового пользователя
+     * @return mixed
+     */
+    public static function make()
+    {
+        $newUser = User::create([
+            'email' => request()->email,
+            'password' => Hash::make(request()->password),
+            'name' => request()->name,
+            'job' => request()->job,
+            'phone' => request()->phone,
+            'address' => request()->address,
+            'vk_link' => request()->vk_link,
+            'telegram_link' => request()->telegram_link,
+            'instagram_link' => request()->instagram_link,
+            'status' => Status::filtrate(request()->status),
+        ]);
+
+        if(request()->avatar) {
+            AvatarServise::store($newUser, request()->avatar);
+        }
+
+        return $newUser;
+    }
+
+    /**
      * Обновление пароля пользователя
      * @param User $user
      * @param $password
@@ -97,4 +124,15 @@ class User extends Authenticatable
         $user->save();
     }
 
+    /**
+     * Удаление пользователя вместе с загруженным аватаром
+     * @param User $user
+     * @return bool|null
+     */
+    public static function remove(User $user)
+    {
+        Storage::disk('public')->delete($user->avatar);
+
+        return $user->delete();
+    }
 }

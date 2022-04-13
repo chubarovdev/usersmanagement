@@ -49,7 +49,7 @@
                 </div>
                 <div class="form-group">
                     <label class="form-label" for="password">Пароль</label>
-                    <input name="password" type="password" id="password" class="form-control" placeholder="" >
+                    <input name="password" type="password" id="password" class="form-control" placeholder="****" >
                 </div>
                 <div class="form-group text-left">
                     <div class="custom-control custom-checkbox">

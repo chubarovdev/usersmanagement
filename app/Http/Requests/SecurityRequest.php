@@ -40,7 +40,6 @@ class SecurityRequest extends FormRequest
                 'nullable',
                 'same:passwordRepeat',
                 Password::min(8),
-
             ],
             'passwordRepeat' => [
                 'nullable'

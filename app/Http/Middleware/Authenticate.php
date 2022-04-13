@@ -3,12 +3,18 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use App\Models\User;
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
 use Illuminate\Support\Facades\Auth;
 
 class Authenticate extends Middleware
 {
+    /**
+     * Проверка прав пользователя на доступ к определенным роутам
+     * @param \Illuminate\Http\Request $request
+     * @param Closure $next
+     * @param string[] $role
+     * @return \Illuminate\Http\RedirectResponse|mixed|\never
+     */
     public function handle($request, Closure $next, $role)
     {
         if(! Auth::check()) {
@@ -38,7 +44,7 @@ class Authenticate extends Middleware
      * @param  \Illuminate\Http\Request  $request
      * @return string|null
      */
-    protected function redirectTo($request)    {
+    protected function redirectTo($request) {
         return redirect()->back();
     }
 }
