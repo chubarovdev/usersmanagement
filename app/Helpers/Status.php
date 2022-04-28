@@ -28,9 +28,6 @@ class Status
      */
     public static function filtrate($status) : int
     {
-        if( ! (is_integer($status) && $status >=1 && $status <=3) )
-            return 1;
-
-        return $status;
+        return ( ! (is_integer($status) && $status >=1 && $status <=3) ) ? 1 : $status;
     }
 }
